@@ -9,3 +9,7 @@ body {
 .card {
   background-color: rgb(40, 39, 39);
 }
+.header {
+  /* background: black; */
+  backdrop-filter: blur(4px);
+}
