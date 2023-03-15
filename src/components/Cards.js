@@ -41,10 +41,7 @@ const Cards = () => {
                   src={e.image}
                   alt=""
                 />
-                <h1>
-                  {/* <span className="text-gray-500">Name:</span> */}
-                  {e.title}
-                </h1>
+                <h1>{e.title}</h1>
                 <h1 className="flex items-center ">
                   <span className="text-gray-500 mr-1">Rating:</span>
                   <ReactStars
@@ -54,9 +51,7 @@ const Cards = () => {
                     edit={false}
                   />
                 </h1>
-                <h1>
-                  <span className="text-gray-500">Year:</span> {e.year}
-                </h1>
+                <h1>{e.year}</h1>
               </div>
             </Link>
           );
