@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Bars } from "react-loader-spinner";
 import { addDoc } from "firebase/firestore";
 import { movieRef } from "../firebase/firebase";
 import swal from "sweetalert";
+import { Appstate } from "../App";
+import { useNavigate } from "react-router-dom";
 
 const AddMovie = () => {
+  const navigate = useNavigate();
+  const useAppstate = useContext(Appstate);
   const [form, setForm] = useState({
     title: "",
     year: "",
@@ -17,19 +21,23 @@ const AddMovie = () => {
   const addMovie = async () => {
     setLoading(true);
     try {
-      await addDoc(movieRef, form);
-      swal({
-        title: "Success",
-        icon: "success",
-        button: false,
-        timer: 3000,
-      });
-      setForm({
-        title: "",
-        year: "",
-        description: "",
-        image: "",
-      });
+      if (useAppstate.login) {
+        await addDoc(movieRef, form);
+        swal({
+          title: "Success",
+          icon: "success",
+          button: false,
+          timer: 3000,
+        });
+        setForm({
+          title: "",
+          year: "",
+          description: "",
+          image: "",
+        });
+      } else {
+        navigate("/login");
+      }
       setLoading(false);
     } catch (err) {
       swal({
